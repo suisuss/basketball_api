@@ -9,6 +9,13 @@ stats_df = pd.read_csv('data/original-stats.csv', encoding='utf-8', delimiter=',
 salaries_df_json = json.loads(salaries_df.to_json(orient="records"))
 stats_df_json = json.loads(stats_df.to_json(orient="records"))
 
+class WelcomeAPI(Resource):
+    global salaries_df_json
+
+    def get(self):
+        ret = ({"message": "Welcome! Go to /stats for stats on players, or go to /salaries for player salaries"}, 200)
+        return ret[0], ret[1]
+
 
 class SalariesAPI(Resource):
     global salaries_df_json

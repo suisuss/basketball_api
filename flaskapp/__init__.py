@@ -2,11 +2,9 @@ from flask import Flask
 from .config import Config
 from flask_restful import Api
 
-app = Flask(__name__)
-api = Api()
-
-
-def create_app(app=app, config_class=Config, api=api):
+def create_app(config_class=Config):
+    app = Flask(__name__)
+    api = Api()
     app.config.from_object(Config)
 
     # Initializing API routes
@@ -20,6 +18,5 @@ def create_app(app=app, config_class=Config, api=api):
     app.register_blueprint(api_bp)
 
     return app
-
 
 app = create_app()
